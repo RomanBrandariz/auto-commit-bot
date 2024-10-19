@@ -9,20 +9,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Clona el repositorio
     - name: Checkout the repository
       uses: actions/checkout@v2
 
-    # Modifica el archivo last_update.txt con la fecha actual
     - name: Update last_update.txt with current date
       run: |
         echo "Última actualización: $(date)" > last_update.txt
 
-    # Hacer commit y push de los cambios
     - name: Commit and push changes
       run: |
         git add last_update.txt
         git commit -m "Auto-update: $(date)"
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Usar el token de autenticación integrado
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
