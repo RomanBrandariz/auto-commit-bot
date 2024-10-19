@@ -1,0 +1,25 @@
+name: Daily Auto Commit
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Se ejecuta todos los días a las 00:00 UTC
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v2
+
+    - name: Update last_update.txt with current date
+      run: |
+        echo "Última actualización: $(date)" > last_update.txt
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git add last_update.txt
+        git commit -m "Auto-update: $(date)"
+        git push
