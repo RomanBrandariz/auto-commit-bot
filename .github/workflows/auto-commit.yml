@@ -2,8 +2,8 @@ name: Daily Auto Commit
 
 on:
   schedule:
-    #- cron: '0 0 * * *'  # Ejecuta a las 00:00 UTC cada día
-    - cron: '29 4 * * *'  # 1:27 AM en Argentina (UTC-3)
+    - cron: '0 0 * * *'  # Ejecuta a las 00:00 UTC cada día
+   
 
 jobs:
   commit:
