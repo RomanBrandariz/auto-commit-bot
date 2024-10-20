@@ -12,3 +12,20 @@ This project is designed to demonstrate how you can automate updates to a reposi
 
 ---
 **Note:** This bot is for demonstration purposes only and may not be suitable for production use.
+
+---
+
+# Bot de Auto-Commit 🤖
+
+Este repositorio realiza automáticamente commits de actualizaciones diarias utilizando GitHub Actions para simular actividad diaria. El bot actualiza un archivo de texto simple (`last_update.txt`) todos los días con la fecha actual.
+
+### Cómo funciona:
+- El bot se ejecuta a las 00:00 UTC todos los días.
+- Actualiza el archivo `last_update.txt` con la última fecha.
+- Realiza commits y envía automáticamente los cambios, manteniendo el repositorio activo.
+
+### ¿Por qué?
+Este proyecto está diseñado para demostrar cómo puedes automatizar actualizaciones en un repositorio y mantener un registro de actividad constante en GitHub.
+
+---
+**Nota:** Este bot es solo para fines de demostración y puede no ser adecuado para uso en producción.
