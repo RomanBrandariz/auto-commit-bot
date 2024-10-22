@@ -3,11 +3,14 @@ name: Daily Auto Commit
 on:
   workflow_dispatch:  # Permite ejecutar el workflow manualmente
   schedule:
-    - cron: '40 3 * * *' # Se ejecuta todos los días a las 03:40 UTC
+    - cron: '40 3 * * *'  # Se ejecuta todos los días a las 03:40 UTC
 
 jobs:
   commit:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # Permitir que el GITHUB_TOKEN tenga permisos de escritura
 
     steps:
     - name: Checkout the repository
@@ -17,11 +20,13 @@ jobs:
       run: |
         echo "Última actualización: $(date)" > last_update.txt
 
-    - name: Commit and push changes
-      run: |
-        git config --local user.name "RomanBrandariz"  # Reemplaza con tu nombre de usuario de GitHub
-        git config --local user.email "branr0@hotmail.com"  # Reemplaza con tu email asociado a GitHub
-        git add last_update.txt
+    # Usar git-auto-commit-action para automatizar el commit y push
+    - uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "Auto-update: $(date)"  # El mensaje de commit personalizado
+        commit_user_name: "RomanBrandariz"  # Tu nombre de usuario
+        commit_user_email: "branr0@hotmail.com"  # Tu email de GitHub
+
         git commit -m "Auto-update: $(date)"
         git push https://RomanBrandariz:${{ secrets.PERSONAL_TOKEN }}@github.com/RomanBrandariz/auto-commit-bot.git  # Usar el token personal para autenticar
 
