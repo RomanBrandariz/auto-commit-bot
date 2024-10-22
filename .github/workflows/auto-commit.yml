@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: Checkout the repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Update last_update.txt with current date
       run: |
@@ -23,11 +23,6 @@ jobs:
     # Usar git-auto-commit-action para automatizar el commit y push
     - uses: stefanzweifel/git-auto-commit-action@v5
       with:
-        commit_message: "Auto-update: $(date)"  # El mensaje de commit personalizado
-        commit_user_name: "RomanBrandariz"  # Tu nombre de usuario
-        commit_user_email: "branr0@hotmail.com"  # Tu email de GitHub
-
-        git commit -m "Auto-update: $(date)"
-        git push https://RomanBrandariz:${{ secrets.PERSONAL_TOKEN }}@github.com/RomanBrandariz/auto-commit-bot.git  # Usar el token personal para autenticar
-
-
+        commit_message: "Auto-update: $(date)"
+        commit_user_name: "RomanBrandariz"
+        commit_user_email: "branr0@hotmail.com"
