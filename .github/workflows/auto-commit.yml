@@ -5,7 +5,6 @@ on:
   schedule:
     - cron: '40 3 * * *' # Se ejecuta todos los días a las 03:40 UTC
 
-
 jobs:
   commit:
     runs-on: ubuntu-latest
@@ -20,10 +19,11 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git config --local user.name "GitHub Actions"  # Configura el nombre localmente
-        git config --local user.email "actions@github.com"  # Configura el email localmente
+        git config --local user.name "RomanBrandariz"  # Reemplaza con tu nombre de usuario de GitHub
+        git config --local user.email "branr0@hotmail.com"  # Reemplaza con tu email asociado a GitHub
         git add last_update.txt
         git commit -m "Auto-update: $(date)"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Usa el token para autenticar
+
