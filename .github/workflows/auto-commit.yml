@@ -23,7 +23,6 @@ jobs:
         git config --local user.email "branr0@hotmail.com"  # Reemplaza con tu email asociado a GitHub
         git add last_update.txt
         git commit -m "Auto-update: $(date)"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Usa el token para autenticar
+        git push https://<your-username>:${{ secrets.PERSONAL_TOKEN }}@github.com/RomanBrandariz/auto-commit-bot.git  # Usar el token personal para autenticar
+
 
