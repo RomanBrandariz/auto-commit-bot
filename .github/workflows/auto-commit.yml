@@ -16,13 +16,23 @@ jobs:
     - name: Checkout the repository
       uses: actions/checkout@v4
 
+    - name: Import GPG key
+      uses: crazy-max/ghaction-import-gpg@v6
+      with:
+        gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+        passphrase: ${{ secrets.GPG_PASSPHRASE }}
+      id: import-gpg
+
     - name: Update last_update.txt with current date
       run: |
         echo "Última actualización: $(date)" > last_update.txt
 
-    # Usar git-auto-commit-action para automatizar el commit y push
-    - uses: stefanzweifel/git-auto-commit-action@v5
-      with:
-        commit_message: "Auto-update: $(date)"
-        commit_user_name: "RomanBrandariz"
-        commit_user_email: "branr0@hotmail.com"
+    - name: Commit and push changes
+      run: |
+        git config --local user.name "RomanBrandariz"
+        git config --local user.email "branr0@hotmail.com"
+        git config --local user.signingkey ${{ steps.import-gpg.outputs.keyid }}
+        git config --local commit.gpgSign true
+        git add last_update.txt
+        git commit -m "Auto-update: $(date)"
+        git push
